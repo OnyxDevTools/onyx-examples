@@ -1,0 +1,18 @@
+{
+  "tables": [
+    {
+      "name": "Item",
+      "fields": [
+        {
+          "name": "id",
+          "type": "String",
+          "primaryKey": true
+        },
+        {
+          "name": "name",
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}
