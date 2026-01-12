@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+onyx:
+  base-url: ${ONYX_BASE_URL:https://api.onyx.dev}
+  database-id: ${ONYX_DATABASE_ID:demo-database-id}
+  api-key: ${ONYX_API_KEY:demo-api-key}
+  api-secret: ${ONYX_API_SECRET:demo-api-secret}
+  request-logging-enabled: true
+  response-logging-enabled: false
+  request-timeout-ms: 10000
+  connect-timeout-ms: 2000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
