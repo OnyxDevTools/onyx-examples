@@ -1,0 +1,48 @@
+{
+  "databaseId": "39b198a8-ef67-11f0-0000-af6ea7c0374c",
+  "revisionDescription": "Created the **Task** table with UUID primary key `id` and fields: `title`, `description`, `status`, `dueDate`, `createdAt`, and `updatedAt`. The table is ready for use.",
+  "entities": [
+    {
+      "name": "Task",
+      "identifier": {
+        "name": "id",
+        "type": "String",
+        "generator": "UUID"
+      },
+      "partition": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String"
+        },
+        {
+          "name": "title",
+          "type": "String"
+        },
+        {
+          "name": "description",
+          "type": "String"
+        },
+        {
+          "name": "status",
+          "type": "String"
+        },
+        {
+          "name": "dueDate",
+          "type": "String"
+        },
+        {
+          "name": "createdAt",
+          "type": "String"
+        },
+        {
+          "name": "updatedAt",
+          "type": "String"
+        }
+      ],
+      "resolvers": [],
+      "triggers": [],
+      "indexes": []
+    }
+  ]
+}
