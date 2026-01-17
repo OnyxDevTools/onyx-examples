@@ -1,0 +1,40 @@
+{
+  "databaseId": "36be7051-f053-11f0-0000-8b9d80c34ea9",
+  "revisionDescription": "simple Task Entity",
+  "entities": [
+    {
+      "name": "Task",
+      "identifier": {
+        "name": "id",
+        "type": "String",
+        "generator": "UUID"
+      },
+      "partition": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String"
+        },
+        {
+          "name": "title",
+          "type": "String"
+        },
+        {
+          "name": "description",
+          "type": "String"
+        },
+        {
+          "name": "dueDate",
+          "type": "Timestamp"
+        },
+        {
+          "name": "completed",
+          "type": "Boolean"
+        }
+      ],
+      "resolvers": [],
+      "triggers": [],
+      "indexes": []
+    }
+  ]
+}
