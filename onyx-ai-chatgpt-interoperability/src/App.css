@@ -121,7 +121,51 @@ main {
   font-size: 0.95rem;
 }
 
+.stream-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #304045;
+  font-weight: 600;
+}
+
+.stream-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: #0f766e;
+}
+
 .model-error {
   color: #b91c1c;
   font-size: 0.85rem;
+}
+
+.message-markdown {
+  line-height: 1.5;
+}
+
+.message-markdown p {
+  margin: 0.1em 0;
+}
+
+.message-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  background: #f1f5f5;
+  padding: 1px 4px;
+  border-radius: 6px;
+}
+
+.message-markdown pre {
+  background: #0f1a1a;
+  color: #f2f9f7;
+  padding: 12px;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.message-markdown a {
+  color: #0f766e;
+  text-decoration: underline;
 }

@@ -8,6 +8,7 @@ import {
   TypingIndicator,
 } from '@chatscope/chat-ui-kit-react';
 import { APIError } from 'openai';
+import ReactMarkdown from 'react-markdown';
 import { onyx } from '../lib/openaiClient';
 
 const SYSTEM_PROMPT =
@@ -70,6 +71,7 @@ export function ChatPanel() {
   const [isTyping, setIsTyping] = useState(false);
   const [models, setModels] = useState<string[]>([]);
   const [selectedModel, setSelectedModel] = useState<string>('onyx');
+  const [useStreaming, setUseStreaming] = useState(true);
   const [modelsError, setModelsError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -121,35 +123,55 @@ export function ChatPanel() {
     ]);
 
     try {
-      const completion = await onyx.chat.completions.create({
+      const request = {
         model: selectedModel,
         messages: buildCompletionMessages([...messages, userEntry]),
         temperature: 0.3,
-        stream: true,
-      });
+      } as const;
 
-      let buffer = '';
+      if (useStreaming) {
+        const completion = await onyx.chat.completions.create({
+          ...request,
+          stream: true,
+        });
 
-      for await (const chunk of completion) {
-        const delta = chunk.choices?.[0]?.delta?.content;
-        if (!delta) continue;
-        buffer += extractText(delta);
+        let buffer = '';
+
+        for await (const chunk of completion) {
+          const delta = chunk.choices?.[0]?.delta?.content;
+          if (!delta) continue;
+          buffer += extractText(delta);
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === assistantId
+                ? {
+                    ...msg,
+                    content: buffer,
+                  }
+                : msg,
+            ),
+          );
+        }
+
+        if (!buffer) {
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === assistantId ? { ...msg, content: 'I could not generate a reply.' } : msg,
+            ),
+          );
+        }
+      } else {
+        const completion = await onyx.chat.completions.create({
+          ...request,
+          stream: false,
+        });
+
+        const content = extractText(completion.choices?.[0]?.message?.content);
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === assistantId
-              ? {
-                  ...msg,
-                  content: buffer,
-                }
+              ? { ...msg, content: content || 'I could not generate a reply.' }
               : msg,
-          ),
-        );
-      }
-
-      if (!buffer) {
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === assistantId ? { ...msg, content: 'I could not generate a reply.' } : msg,
           ),
         );
       }
@@ -193,6 +215,14 @@ export function ChatPanel() {
             </option>
           ))}
         </select>
+        <label className="stream-toggle">
+          <input
+            type="checkbox"
+            checked={useStreaming}
+            onChange={(e) => setUseStreaming(e.target.checked)}
+          />
+          Stream responses
+        </label>
         {modelsError && <span className="model-error">{modelsError}</span>}
       </div>
       <MainContainer className="chat-shell">
@@ -211,7 +241,13 @@ export function ChatPanel() {
                   direction: msg.direction,
                   position: 'single',
                 }}
-              />
+              >
+                <Message.CustomContent>
+                  <div className="message-markdown">
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  </div>
+                </Message.CustomContent>
+              </Message>
             ))}
           </MessageList>
           <MessageInput
