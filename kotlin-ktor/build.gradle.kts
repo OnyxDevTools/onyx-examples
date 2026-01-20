@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val ktorVersion = "2.3.12"
-val onyxVersion = "3.6.11"
+val onyxVersion = "3.8.3"
 val onyxGithubUser: String? = System.getenv("ONYX_GITHUB_USERNAME") ?: System.getenv("GITHUB_ACTOR")
 val onyxGithubToken: String? = System.getenv("ONYX_GITHUB_TOKEN") ?: System.getenv("GITHUB_TOKEN")
 
