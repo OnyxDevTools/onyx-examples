@@ -3,5 +3,5 @@ Django==6.0.1
 djangorestframework==3.16.1
 drf-spectacular==0.29.0
 drf-spectacular-sidecar==2026.1.1
-onyx-database==0.0.4
+onyx-database==0.1.0
 sqlparse==0.5.5

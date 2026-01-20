@@ -9,7 +9,7 @@ This project is a minimal Spring Boot 3 showcase that integrates the Kotlin-firs
 - macOS users: `brew install openjdk@21 jq`
 
 ## Project layout
-- `pom.xml` — Spring Boot 3.5.9, Onyx client 3.7.3, Kotlin stdlib/reflect, SpringDoc UI
+- `pom.xml` — Spring Boot 3.5.9, Onyx client 3.8.3, Kotlin stdlib/reflect, SpringDoc UI
 - `src/main/java/dev/onyx/example/customer` — app code (config, controller, service, models)
 - `src/main/resources/application.yml` — Spring config (port, swagger paths)
 - `src/main/resources/onyx-database.json` — local Onyx connection settings (ignored by git)
@@ -36,7 +36,7 @@ Alternitively, you can set the following envars:
 ```xml
 <properties>
   <java.version>21</java.version>
-  <onyx-client.version>3.7.3</onyx-client.version>
+  <onyx-client.version>3.8.3</onyx-client.version>
   <kotlin.version>2.2.10</kotlin.version>
 </properties>
 

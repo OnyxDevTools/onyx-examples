@@ -3,7 +3,7 @@ module go-gin-api
 go 1.24.0
 
 require (
-	github.com/OnyxDevTools/onyx-database-go v0.0.2
+	github.com/OnyxDevTools/onyx-database-go v0.1.0
 	github.com/gin-gonic/gin v1.11.0
 )
 
